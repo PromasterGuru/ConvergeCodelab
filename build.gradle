@@ -1,14 +1,45 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+
+checkstyle {
+    toolVersion = '8.1' // optionally specify tool version
+}
+
+pmd {
+    toolVersion = '5.8.1' // optionally specify tool version
+}
+
+tasks.withType(Checkstyle) {
+    ignoreFailures = true // REQUIRED because the plugin will report only up to the point the first issue if this is not set
+    showViolations = false
+
+    reports {
+        xml.enabled = true  // REQUIRED the plugin parses xml reports so this is essential
+    }
+
+    include '**/*.java'
+}
+
+tasks.withType(Pmd) {
+    ignoreFailures = true // REQUIRED because the plugin will report only up to the point the first issue if this is not set
+
+    reports {
+        xml.enabled = true  // REQUIRED the plugin parses xml reports so this is essential
+    }
+
+    include '**/*.java'
+}
 
 buildscript {
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.1'
-        
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,7 +49,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
