@@ -6,7 +6,7 @@
     <color name="title_color">#134F5C</color>
     <color name="toolbar_color">#149621</color>
     <color name="toolbar_text_color">#FFFFFF</color>
-    <color name="frame_color">#E5E5E5</color>
+    <color name="frame_color">#FAFAFA</color>
     <color name="username_color">#45818E</color>
     <color name="repo_details_color">#000000</color>
     <color name="shadow_color">#FAFAFA</color>
