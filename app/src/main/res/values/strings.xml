@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Converge Codelab</string>
-    <string name="txtTitle">Nairobi Java Developers</string>
-    <string name="imgDescription">Profile Picture</string>
-    <string name="imgLogo">Convege Codelab logo</string>
+    <string name="txt_title">Nairobi Java Developers</string>
+    <string name="img_description">Profile Picture</string>
+    <string name="img_logo">Convege Codelab logo</string>
+    <string name="profile_name">DummyUser</string>
 </resources>
