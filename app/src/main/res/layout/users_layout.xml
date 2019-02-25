@@ -9,6 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_gravity="center"
         android:text="@string/txtTitle"
         android:textColor="@color/title_color"
@@ -35,128 +37,22 @@
                 android:layout_height="85dp"
                 android:contentDescription="@string/imgDescription"
                 android:padding="4dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/txtUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/imgUser"
+                android:layout_toRightOf="@id/imgUser"
                 android:paddingTop="4dp"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="4dp"
                 android:textColor="@color/username_color"
                 android:text="PromasterGuru"
-                android:textAppearance="?android:textAppearanceMedium"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/vNumbers"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="2dp"
-                android:layout_toEndOf="@id/imgUser"
-                android:layout_below="@id/txtUsername"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtNumRepos"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/username_color"
-                    android:textStyle="bold"
-                    android:text="50"/>
-
-                <TextView
-                    android:id="@+id/txtNumFollowers"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/username_color"
-                    android:textStyle="bold"
-                    android:text="1350"/>
-
-                <TextView
-                    android:id="@+id/txtNumOrgs"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/username_color"
-                    android:textStyle="bold"
-                    android:text="2"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/vRepoDetails"
-                android:orientation="horizontal"
-                android:paddingStart="4dp"
-                android:paddingBottom="4dp"
-                android:paddingEnd="4dp"
-                android:layout_toEndOf="@id/imgUser"
-                android:layout_below="@id/vNumbers">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/img_github"
-                    android:contentDescription="@string/imgRepos"
-                    android:scaleType="centerCrop"
-                    />
-
-                <TextView
-                    android:id="@+id/txtRepos"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txtRepos"
-                    android:textSize="14sp"
-                    android:layout_weight="0.9"
-                    />
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_margin="2dp"
-                    android:src="@drawable/img_follow"
-                    android:contentDescription="@string/imgFollowers"
-                    android:textSize="14sp"
-                    android:scaleType="centerCrop"
-                    />
-
-                <TextView
-                    android:id="@+id/txtFollowers"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txtFollowers"
-                    android:textSize="14sp"
-                    android:layout_weight="0.9"
-                    />
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_margin="2dp"
-                    android:src="@drawable/img_org"
-                    android:contentDescription="@string/imgOrgs"
-                    android:scaleType="centerCrop"
-                    />
-
-                <TextView
-                    android:id="@+id/txtOrgs"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txtOrganizations"
-                    android:textSize="14sp"
-                    android:layout_weight="1"
-                    />
-
-            </LinearLayout>
+                android:layout_centerVertical="true"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textStyle="bold"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
