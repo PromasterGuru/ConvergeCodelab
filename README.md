@@ -1,22 +1,23 @@
 # ConvergeCodelab
 
-Android Application for retrieving Github users
+Android Application that displays a list Nairobi Java Developers
 
 # Wireframes
 
-There are two wireframes in the wireframe folder displaying both static and interaction elements.
+All the wireframes are designed using **[Figma](https://www.figma.com/)** wireframing tool. The main reason for choosing this tool is that it is easy to learn and allow developers to share wireframes and collect feedback, in real time or asynchronously, by simply sharing a link.
 
-**[Github Users mockup](https://user-images.githubusercontent.com/39240075/53099281-878a3a80-3536-11e9-8b5d-2fba055f517c.png)** : Mocks the Github users activity that will be used to display a list of Github users.
+**[List of Nairobi Java Developers mockup](<![image](https://user-images.githubusercontent.com/39240075/53282038-46b34100-3743-11e9-81ed-a72a06b29854.png)>)** :The mockup displays a list of Nairobi Java Developers from Github.
 
-**[Exit App mockup](https://user-images.githubusercontent.com/39240075/53100299-8d811b00-3538-11e9-9650-e6c3681d3b7a.png)** : Mockup for the exit activity.
+**[User profile mockup](<![image](https://user-images.githubusercontent.com/39240075/53282104-364f9600-3744-11e9-9321-2a657493c139.png)>)** : The mockup displays user profile after an item on the list is clicked.
+
+**[Exit App mockup](https://user-images.githubusercontent.com/39240075/53100299-8d811b00-3538-11e9-9650-e6c3681d3b7a.png)** :The mockup displays app exit option.
 
 # App color palettes
 
-| Color Code         | Image                                                                                                          |
-| ------------------ | -------------------------------------------------------------------------------------------------------------- |
-| **Activity Title** | ![image](https://user-images.githubusercontent.com/39240075/53101612-2f096c00-353b-11e9-86c5-9c8b02120318.png) |
-| **App Title**      | ![image](https://user-images.githubusercontent.com/39240075/53101631-392b6a80-353b-11e9-8b15-cf1da2a7f325.png) |
-| **Frame Title**    | ![image](https://user-images.githubusercontent.com/39240075/53101649-40527880-353b-11e9-8c30-f09a26975f2a.png) |
-| **Toolbar Title**  | ![image](https://user-images.githubusercontent.com/39240075/53101664-46485980-353b-11e9-808f-09e57982b8d1.png) |
-| **User details**   | ![image](https://user-images.githubusercontent.com/39240075/53101683-506a5800-353b-11e9-93ef-326be5bc70eb.png) |
-| **Usernames**      | ![image](https://user-images.githubusercontent.com/39240075/53101695-58c29300-353b-11e9-98f8-bba4fbec5630.png) |
+| Color Code           | Image                                                                                                          |
+| -------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Activity Title**   | ![image](https://user-images.githubusercontent.com/39240075/53101612-2f096c00-353b-11e9-86c5-9c8b02120318.png) |
+| **App Title**        | ![image](https://user-images.githubusercontent.com/39240075/53101631-392b6a80-353b-11e9-8b15-cf1da2a7f325.png) |
+| **Item list layout** | ![image](https://user-images.githubusercontent.com/39240075/53282218-c0e4c500-3745-11e9-82f9-7653b68eee81.png) |
+| **Toolbar Title**    | ![image](https://user-images.githubusercontent.com/39240075/53101664-46485980-353b-11e9-808f-09e57982b8d1.png) |
+| **Usernames**        | ![image](https://user-images.githubusercontent.com/39240075/53101695-58c29300-353b-11e9-98f8-bba4fbec5630.png) |
