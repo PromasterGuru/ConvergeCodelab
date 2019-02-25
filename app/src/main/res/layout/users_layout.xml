@@ -37,17 +37,17 @@
                 android:layout_height="85dp"
                 android:contentDescription="@string/imgDescription"
                 android:padding="4dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/txtUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/imgUser"
+                android:layout_toRightOf="@id/imgUser"
                 android:paddingTop="4dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="4dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="4dp"
                 android:textColor="@color/username_color"
                 android:text="PromasterGuru"
                 android:layout_centerVertical="true"
