@@ -9,11 +9,7 @@ Android Application that displays a list Nairobi Java Developers
 
 All the wireframes are designed using **[Figma](https://www.figma.com/)** wireframing tool. The main reason for choosing this tool is that it is easy to learn and allow developers to share wireframes and collect feedback, in real time or asynchronously, by simply sharing a link.
 
-**[List of Nairobi Java Developers mockup](<![image](https://user-images.githubusercontent.com/39240075/53282038-46b34100-3743-11e9-81ed-a72a06b29854.png)>)** :The mockup displays a list of Nairobi Java Developers from Github.
-
-**[User profile mockup](<![image](https://user-images.githubusercontent.com/39240075/53282104-364f9600-3744-11e9-9321-2a657493c139.png)>)** : The mockup displays user profile after an item on the list is clicked.
-
-**[Exit App mockup](https://user-images.githubusercontent.com/39240075/53100299-8d811b00-3538-11e9-9650-e6c3681d3b7a.png)** :The mockup displays app exit option.
+| ![image](https://user-images.githubusercontent.com/39240075/53490510-e86cc200-3aa4-11e9-9f4b-e6e6f7d1f458.png) | ![image](https://user-images.githubusercontent.com/39240075/53490599-2833a980-3aa5-11e9-9c8a-82a2e3d84e81.png) | ![image](https://user-images.githubusercontent.com/39240075/53490691-6af58180-3aa5-11e9-9e23-4db4b762da33.png) |
 
 # App color palettes
 
