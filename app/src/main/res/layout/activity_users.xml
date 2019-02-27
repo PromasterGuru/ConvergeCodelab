@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -26,34 +27,36 @@
         android:padding="4dp">
 
         <RelativeLayout
+            android:id="@+id/detailsView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/my_rect"
+            android:clickable="true"
             android:elevation="4dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgUser"
-                android:src="@drawable/promaster"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
+                android:layout_marginLeft="8dp"
                 android:contentDescription="@string/img_description"
                 android:padding="4dp"
-                android:layout_marginLeft="8dp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/promaster" />
 
             <TextView
                 android:id="@+id/txtUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/imgUser"
-                android:paddingTop="4dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="4dp"
-                android:textColor="@color/username_color"
-                android:text="PromasterGuru"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/imgUser"
+                android:paddingLeft="16dp"
+                android:paddingTop="4dp"
+                android:paddingRight="4dp"
+                android:text="PromasterGuru"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textStyle="bold"/>
+                android:textColor="@color/username_color"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
