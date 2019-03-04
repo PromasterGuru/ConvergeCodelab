@@ -7,7 +7,7 @@ public class GithubService {
 
     public GithubApi GithubService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/search/")
+                .baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         GithubApi service = retrofit.create(GithubApi.class);
