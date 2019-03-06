@@ -1,13 +1,12 @@
-package com.example.convergecodelab;
+package com.example.convergecodelab.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import com.example.convergecodelab.R;
 
 public class MainActivity extends AppCompatActivity {
     RelativeLayout detailsView;
