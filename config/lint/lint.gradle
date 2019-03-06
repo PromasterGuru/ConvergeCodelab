@@ -4,8 +4,8 @@ android {
         abortOnError true
         xmlReport false
         htmlReport true
-        lintConfig files("${project.rootDir}/config/lint/lint.xml")
-        htmlOutput files("$project.buildDir/reports/lint/lint-result.html")
-        xmlOutput files("$project.buildDir/reports/lint/lint-result.xml")
+        lintConfig file("${project.rootDir}/config/lint/lint.xml")
+        htmlOutput file("$project.buildDir/reports/lint/lint-result.html")
+        xmlOutput file("$project.buildDir/reports/lint/lint-result.xml")
     }
 }

@@ -10,7 +10,6 @@ public class GithubService {
                 .baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        GithubApi service = retrofit.create(GithubApi.class);
-        return service;
+        return retrofit.create(GithubApi.class);
     }
 }

@@ -3,10 +3,10 @@ apply plugin: 'pmd'
 //Task for checking code quality with PMD tool
 task pmd(type: Pmd) {
     ignoreFailures = false
-    ruleSetFiles = files("${project.rootDir}/config/pmd/pmd.xml")
+    ruleSetFiles = files("$project.rootDir/config/quality/pmd/pmd.xml")
     ruleSets = []
 
-    source 'src/main/java'
+    source 'src'
     include '**/*.java'
     exclude '**/gen/**'
     exclude '**/R.java'
@@ -16,5 +16,6 @@ task pmd(type: Pmd) {
         xml.enabled = false
         html.enabled = true
     }
-}
 
+    classpath = files()
+}

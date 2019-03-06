@@ -15,7 +15,7 @@ import retrofit2.Response;
 
 public class GithubPresenter {
 
-    private GithubUsersView usersView;
+    final GithubUsersView usersView;
     private GithubService githubService;
 
     public GithubPresenter(GithubUsersView usersView) {

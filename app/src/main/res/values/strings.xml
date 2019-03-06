@@ -5,4 +5,7 @@
     <string name="img_logo">Convege Codelab logo</string>
     <string name="profile_name">PromasterGuru</string>
     <string name="txtProfile">Profile</string>
+    <string name="txtJoinDate">Jointed at May 13, 2018</string>
+    <string name="txtOrg">Andela Limited</string>
+    <string name="txtRepos">View Repositories</string>
 </resources>

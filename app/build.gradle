@@ -41,5 +41,5 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
 }
 task wrapper(type: Wrapper) {
-    gradleVersion = '5.2.1'
+    gradleVersion = '4.10.2'
 }
