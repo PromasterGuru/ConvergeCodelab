@@ -1,8 +1,11 @@
 package com.example.convergecodelab.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class GithubUsers {
+public class GithubUsers implements Parcelable {
 
     // Declaration of variables that holds each Github user information
     @SerializedName("login")
@@ -13,6 +16,31 @@ public class GithubUsers {
 
     @SerializedName("created_at")
     private String stringDate;
+
+    //Defult constructor
+    public GithubUsers(String userName, String profileImage, String stringDate) {
+        this.userName = userName;
+        this.profileImage = profileImage;
+        this.stringDate = stringDate;
+    }
+
+    protected GithubUsers(Parcel in) {
+        userName = in.readString();
+        profileImage = in.readString();
+        stringDate = in.readString();
+    }
+
+    public static final Parcelable.Creator<GithubUsers> CREATOR = new Parcelable.Creator<GithubUsers>() {
+        @Override
+        public GithubUsers createFromParcel(Parcel in) {
+            return new GithubUsers(in);
+        }
+
+        @Override
+        public GithubUsers[] newArray(int size) {
+            return new GithubUsers[size];
+        }
+    };
 
     //Getter methods that returns each user information
     public String getUserName() {
@@ -27,5 +55,16 @@ public class GithubUsers {
         return stringDate;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(userName);
+        dest.writeString(profileImage);
+        dest.writeString(stringDate);
+    }
 }
 
