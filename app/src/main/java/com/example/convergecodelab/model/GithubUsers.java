@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GithubUsers implements Parcelable {
+public class GithubUsers{
 
     // Declaration of variables that holds each Github user information
     @SerializedName("login")
@@ -69,12 +69,10 @@ public class GithubUsers implements Parcelable {
         this.stringDate = stringDate;
     }
 
-    @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(userName);
         dest.writeString(profileImage);
