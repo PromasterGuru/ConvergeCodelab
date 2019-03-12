@@ -1,34 +1,53 @@
 package com.example.convergecodelab.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.RelativeLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.convergecodelab.R;
+import com.example.convergecodelab.adapter.GithubAdapter;
+import com.example.convergecodelab.model.GithubUsers;
+import com.example.convergecodelab.presenter.GithubPresenter;
 
-public class MainActivity extends AppCompatActivity {
-    RelativeLayout detailsView;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements GithubUsersView {
+
+    private List<GithubUsers> githubUsers;
+    private GithubAdapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    private List users;
+    private ArrayList<String> usernames = new ArrayList<>();
+    private  ArrayList<String> imageUrls = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        detailsView = (RelativeLayout) findViewById(R.id.detailsView);
-
-        detailsView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewDetails();
-            }
-        });
+        GithubPresenter presenter = new GithubPresenter(this);
+        presenter.getGithubUsers();
     }
 
-    /*Launch DetailActivity to view user profile*/
-    public void viewDetails(){
-        Intent intent = new Intent(this, DetailActivity.class);
-        startActivity(intent);
+    @Override
+    public void githubReadyUsers(List<GithubUsers> githubUsers) {
+        this.users = githubUsers;
+
+        for (GithubUsers githubUser: githubUsers) {
+            imageUrls.add(githubUser.getProfileImage());
+            usernames.add(githubUser.getUserName());
+        }
+        initRecyclerView();
+    }
+    public void initRecyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        GithubAdapter adapter = new GithubAdapter(this, usernames, imageUrls);
+        recyclerView.setAdapter(adapter);
     }
 
 }

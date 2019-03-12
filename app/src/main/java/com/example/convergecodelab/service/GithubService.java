@@ -5,11 +5,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GithubService {
 
-    public GithubApi githubService() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    private static final String BASE_URL="https://api.github.com/";
+    private static Retrofit retrofit = null;
+
+    public static GithubApi getGithubApi() {
+        if(retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
         return retrofit.create(GithubApi.class);
     }
 }
