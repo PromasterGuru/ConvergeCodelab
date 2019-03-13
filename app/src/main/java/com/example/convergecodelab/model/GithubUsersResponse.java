@@ -1,19 +1,23 @@
 package com.example.convergecodelab.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class GithubUsersResponse {
 
     //An ArrayList to hold a list of Github users
-    private final  List githubUsersList;
-
-    //Default constructor that accepts data from the Github API
-    public GithubUsersResponse(List githubUsersList) {
-        this.githubUsersList = githubUsersList;
-    }
+    @SerializedName("items")
+    @Expose
+    private List<GithubUsers> items;
 
     //Getter method that returns a list of Github users
-    public List getGithubUsersList() {
-        return githubUsersList;
+    public List<GithubUsers> getGithubUsersList() {
+        return items;
+    }
+
+    public void setGithubUsersList(List<GithubUsers> items) {
+        this.items = items;
     }
 }

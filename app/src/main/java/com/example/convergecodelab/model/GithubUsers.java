@@ -55,6 +55,20 @@ public class GithubUsers implements Parcelable {
         return stringDate;
     }
 
+
+    //Setter methods
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public void setStringDate(String stringDate) {
+        this.stringDate = stringDate;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -66,5 +80,6 @@ public class GithubUsers implements Parcelable {
         dest.writeString(profileImage);
         dest.writeString(stringDate);
     }
+
 }
 

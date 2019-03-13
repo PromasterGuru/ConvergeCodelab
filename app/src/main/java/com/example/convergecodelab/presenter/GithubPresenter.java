@@ -15,37 +15,37 @@ import retrofit2.Response;
 
 public class GithubPresenter {
 
-    final GithubUsersView usersView;
-    private GithubService githubService;
+
+    GithubUsersView usersView;
+    List<GithubUsers> result;
+    GithubService githubService;
 
     public GithubPresenter(GithubUsersView usersView) {
         this.usersView = usersView;
-
-        if(this.githubService == null){
+        if(this.githubService == null) {
             this.githubService = new GithubService();
         }
     }
 
     public void getGithubUsers(){
         githubService
-                .githubService()
+                .getGithubApi()
                 .githubUsersList()
                 .enqueue(new Callback<GithubUsersResponse>() {
                     @Override
                     public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
-                        GithubUsersResponse githubUsersResponse = response.body();
-                        if(githubUsersResponse != null && githubUsersResponse.getGithubUsersList() != null){
-                            List<GithubUsers> result = githubUsersResponse.getGithubUsersList();
+                        GithubUsersResponse githubUserResponse = response.body();
+                        if(githubUserResponse != null && githubUserResponse.getGithubUsersList() != null) {
+                            List<GithubUsers> result = githubUserResponse.getGithubUsersList();
                             usersView.githubReadyUsers(result);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
-                        Log.d("Error", t.getMessage());
+                        Log.d("TAG", "onFailure() returned: " + t);
                     }
                 });
-
     }
 }
 
