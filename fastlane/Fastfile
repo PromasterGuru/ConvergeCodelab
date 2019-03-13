@@ -17,8 +17,10 @@ default_platform(:android)
 
 
 platform :android do
+    fastlane_require 'dotenv'
     before_all do
-        ENV["SLACK_URL"] = $SLACK_URL
+        Dotenv.overload '.env.secret'
+        puts "slack_url: #{ENV['SLACK_URL']}"
     end
 
   desc "Runs all the tests"
@@ -45,17 +47,18 @@ platform :android do
   private_lane :upload_to_slack do |options|
       file_path = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
       file_name = file_path.gsub(/\/.*\//,"")
-      access_token = $SLACK_API_TOKEN
-      channel_name = $SLACK_CHANNEL
+      token = ENV['SLACK_API_TOKEN']
+      channel = ENV['SLACK_CHANNEL']
       sh "echo Uploading " + file_name + " to Slack"
-      sh "curl https://slack.com/api/files.upload -F token=\"" + access_token + "\" -F channels=\"" + channel_name + "\" -F title=\"" + file_name + "\" -F filename=\"" + file_name + "\" -F file=@" + file_path
+      sh "curl https://slack.com/api/files.upload -F token=\"" + token + "\" -F channels=\"" + channel + "\" -F title=\"" + file_name + "\" -F filename=\"" + file_name + "\" -F file=@" + file_path
   end
 
   after_all do |lane|
       file_name = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH].gsub(/\/.*\//,"")
+      channel_name = #{ENV['SLACK_CHANNEL']}
       slack(
           message: "Successfully deployed new App Update! :bravo:",
-          channel: $SLACK_CHANNEL,
+          channel: channel_name,
           default_payloads: [
               :git_branch,
               :last_git_commit_hash,
