@@ -7,3 +7,4 @@ import java.util.List;
 public interface GithubUsersView {
     void githubReadyUsers(List<GithubUsers> githubUsers);
 }
+

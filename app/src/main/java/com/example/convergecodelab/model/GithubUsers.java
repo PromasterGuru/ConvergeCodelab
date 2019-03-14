@@ -5,29 +5,25 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GithubUsers implements Parcelable {
+public class GithubUsers{
 
     // Declaration of variables that holds each Github user information
     @SerializedName("login")
-    private String userName;
+    private final String userName;
 
     @SerializedName("avatar_url")
-    private String profileImage;
+    private final String profileImage;
 
-    @SerializedName("created_at")
-    private String stringDate;
 
     //Defult constructor
-    public GithubUsers(String userName, String profileImage, String stringDate) {
+    public GithubUsers(String userName, String profileImage) {
         this.userName = userName;
         this.profileImage = profileImage;
-        this.stringDate = stringDate;
     }
 
     protected GithubUsers(Parcel in) {
         userName = in.readString();
         profileImage = in.readString();
-        stringDate = in.readString();
     }
 
     public static final Parcelable.Creator<GithubUsers> CREATOR = new Parcelable.Creator<GithubUsers>() {
@@ -51,34 +47,13 @@ public class GithubUsers implements Parcelable {
         return profileImage;
     }
 
-    public String getStringDate() {
-        return stringDate;
-    }
-
-
-    //Setter methods
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
-
-    public void setStringDate(String stringDate) {
-        this.stringDate = stringDate;
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(userName);
         dest.writeString(profileImage);
-        dest.writeString(stringDate);
     }
 
 }

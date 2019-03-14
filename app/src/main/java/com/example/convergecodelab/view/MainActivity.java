@@ -15,12 +15,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements GithubUsersView {
 
-    private List<GithubUsers> githubUsers;
-    private GithubAdapter adapter;
+    GithubAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    private List users;
-    private ArrayList<String> usernames = new ArrayList<>();
-    private  ArrayList<String> imageUrls = new ArrayList<>();
+    private final List<String> usernames = new ArrayList<>();
+    private final List<String> imageUrls = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
 
     @Override
     public void githubReadyUsers(List<GithubUsers> githubUsers) {
-        this.users = githubUsers;
-
         for (GithubUsers githubUser: githubUsers) {
             imageUrls.add(githubUser.getProfileImage());
             usernames.add(githubUser.getUserName());
@@ -46,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        GithubAdapter adapter = new GithubAdapter(this, usernames, imageUrls);
+        adapter = new GithubAdapter(this, usernames, imageUrls);
         recyclerView.setAdapter(adapter);
     }
 

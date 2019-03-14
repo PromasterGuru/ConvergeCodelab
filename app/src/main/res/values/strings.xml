@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Nairobi Java Developers</string>
     <string name="img_description">Profile Picture</string>
-    <string name="img_logo">Convege Codelab logo</string>
-    <string name="profile_name">PromasterGuru</string>
+    <string name="profile_name">Profile</string>
     <string name="txtProfile">Profile</string>
-    <string name="txtJoinDate">Jointed at May 13, 2018</string>
-    <string name="txtOrg">Andela Limited</string>
-    <string name="txtRepos">View Repositories</string>
+    <string name="txtFollowers">Followers</string>
+    <string name="txtFollowing">Following</string>
+    <string name="txtRepos">Repositories</string>
+    <string name="txtGists">Gists</string>
+    <string name="txtBio">Bio</string>
 </resources>

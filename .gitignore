@@ -77,6 +77,7 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+fastlane/Error*.png
 
 # Version control
 vcs.xml
@@ -87,3 +88,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+#Enivironmental variables file
+.env.secret
