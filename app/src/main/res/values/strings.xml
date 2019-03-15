@@ -8,4 +8,6 @@
     <string name="txtRepos">Repositories</string>
     <string name="txtGists">Gists</string>
     <string name="txtBio">Bio</string>
+    <string name="share">Share</string>
+    <string name="logout">Quit App</string>
 </resources>
