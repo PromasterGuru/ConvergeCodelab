@@ -1,12 +1,17 @@
 package com.example.convergecodelab.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.view.MenuCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuBuilder;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,6 +39,7 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
     private String following;
     private String bioInfo;
     private String gists;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +57,7 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         txtBio = (TextView)findViewById(R.id.userBioInformation);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
+        username = intent.getStringExtra("username");
         GithubProfilePresenter profilePresenter= new GithubProfilePresenter(this);
         profilePresenter.getGithubProfiles(username);
 
@@ -110,5 +116,47 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         SimpleDateFormat outputFormat = new SimpleDateFormat("MMM, d yyyy", Locale.ENGLISH);
         Date date = inputFormat.parse(joinDate);
         return outputFormat.format(date);
+    }
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_detail_actions, menu);
+        MenuCompat.setGroupDividerEnabled(menu,true);
+        if(menu instanceof MenuBuilder){
+            MenuBuilder menuBuilder = (MenuBuilder) menu;
+            menuBuilder.setOptionalIconsVisible(true);
+        }
+        return true;
+    }
+
+    public void shareProfile(){
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        String text = "Check out this awesome developer @" + username + ", " +profileUrl +".";
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+        startActivity(Intent.createChooser(shareIntent, "Share with"));
+    }
+    public void closeApplication(){
+        finish();
+        moveTaskToBack(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.shareProfile:
+                shareProfile();
+                break;
+
+            case R.id.logout:
+                closeApplication();
+                break;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+        return true;
     }
 }

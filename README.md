@@ -9,7 +9,7 @@ Android Application that displays a list Nairobi Java Developers
 
 All the wireframes are designed using **[Figma](https://www.figma.com/)** wireframing tool. The main reason for choosing this tool is that it is easy to learn and allow developers to share wireframes and collect feedback, in real time or asynchronously, by simply sharing a link.
 
-| ![image](https://user-images.githubusercontent.com/39240075/53490510-e86cc200-3aa4-11e9-9f4b-e6e6f7d1f458.png) | ![image](https://user-images.githubusercontent.com/39240075/53490599-2833a980-3aa5-11e9-9c8a-82a2e3d84e81.png) | ![image](https://user-images.githubusercontent.com/39240075/53490691-6af58180-3aa5-11e9-9e23-4db4b762da33.png) |
+| ![image](https://user-images.githubusercontent.com/39240075/54424140-519a3980-4723-11e9-8a63-5d36a2e7e861.png) | ![image](https://user-images.githubusercontent.com/39240075/54424143-5363fd00-4723-11e9-9ddc-b0289609f89c.png) | ![image](https://user-images.githubusercontent.com/39240075/54424132-4e06b280-4723-11e9-9640-ecef45054495.png) |
 
 # App color palettes
 
