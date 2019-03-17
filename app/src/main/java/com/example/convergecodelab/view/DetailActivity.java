@@ -1,6 +1,7 @@
 package com.example.convergecodelab.view;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -40,6 +41,8 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
     private String bioInfo;
     private String gists;
     private String username;
+    ProgressDialog progressDialog;
+    GithubProfilePresenter profilePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,15 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
 
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        GithubProfilePresenter profilePresenter= new GithubProfilePresenter(this);
+        progressDialog = new ProgressDialog(this);
+        String msg = "Loading " + username + " Info...";
+        progressDialog.setTitle(msg);
+        progressDialog.setMessage("Please wait.");
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
+
+        profilePresenter= new GithubProfilePresenter(this);
         profilePresenter.getGithubProfiles(username);
 
         Picasso.get().load(intent.getStringExtra("imageUrl")).into(imgProfile);
@@ -77,6 +88,7 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         this.bioInfo = githubUser.getBio();
         this.gists = githubUser.getGists();
         getProfiles();
+        progressDialog.dismiss();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -87,7 +99,7 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
             Log.d("Error", "An error occurred " + e.getMessage());
         }
         if(this.organization == null){
-            this.organization = "User has no bio";
+            this.organization = "User has no organization";
         }
         if(this.bioInfo == null){
             this.bioInfo = "User has no bio";
@@ -159,4 +171,5 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         }
         return true;
     }
+
 }
