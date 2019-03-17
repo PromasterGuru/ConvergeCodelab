@@ -29,5 +29,4 @@ ext {
     circleImageViewVersion = '3.0.0'
     gsonVersion = '2.8.5'
     retrofitVersion = '2.5.0'
-    picassoVersion = '2.71828'
 }

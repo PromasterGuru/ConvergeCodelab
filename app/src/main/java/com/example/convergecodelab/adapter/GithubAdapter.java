@@ -59,7 +59,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.username.setText(usernames.get(viewHolder.getAdapterPosition()));
-        Picasso.get().load(imageUrls.get(viewHolder.getAdapterPosition())).into(viewHolder.imageUrl);
+        Picasso.with(context).load(imageUrls.get(viewHolder.getAdapterPosition())).into(viewHolder.imageUrl);
     }
 
     @Override

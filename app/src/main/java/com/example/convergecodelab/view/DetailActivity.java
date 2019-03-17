@@ -72,7 +72,7 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         profilePresenter= new GithubProfilePresenter(this);
         profilePresenter.getGithubProfiles(username);
 
-        Picasso.get().load(intent.getStringExtra("imageUrl")).into(imgProfile);
+        Picasso.with(this).load(intent.getStringExtra("imageUrl")).into(imgProfile);
         txtUsername.setText(username);
 
     }
