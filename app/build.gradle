@@ -1,10 +1,5 @@
 apply plugin: 'com.android.application'
 
-apply from: "$project.rootDir/config/checkstyle/checkstyle.gradle"
-apply from: "$project.rootDir/config/findbugs/findbugs.gradle"
-apply from: "$project.rootDir/config/pmd/pmd.gradle"
-apply from: "$project.rootDir/config/lint/lint.gradle"
-
 android {
     compileSdkVersion 28
     defaultConfig {
