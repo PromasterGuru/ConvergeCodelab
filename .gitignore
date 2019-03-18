@@ -91,3 +91,6 @@ lint/tmp/
 
 #Enivironmental variables file
 .env.secret
+
+#Cached files
+build-cache/
