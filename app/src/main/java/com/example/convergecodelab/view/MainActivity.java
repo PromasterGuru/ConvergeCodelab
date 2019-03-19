@@ -3,15 +3,19 @@ package com.example.convergecodelab.view;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.convergecodelab.R;
 import com.example.convergecodelab.adapter.GithubAdapter;
 import com.example.convergecodelab.model.GithubUsers;
 import com.example.convergecodelab.presenter.GithubPresenter;
+import com.example.convergecodelab.util.NetworkUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +28,13 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
     private final List<String> usernames = new ArrayList<>();
     private final List<String> imageUrls = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
+    CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadGithubUsers();
+        fetchDataHelper();
     }
 
     @Override
@@ -74,5 +79,21 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
                 }, 3000);
             }
         });
+    }
+    public void fetchDataHelper(){
+        NetworkUtility networkUtility = new NetworkUtility();
+        if(networkUtility.networkAvailable(this)) {
+            loadGithubUsers();
+        }
+        else {
+            Snackbar.make(findViewById(R.id.main_layout), "No internet connection", Snackbar.LENGTH_INDEFINITE).setDuration(60000)
+                    .setAction("Retry", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            loadGithubUsers();
+                        }
+                    })
+                    .show();
+        }
     }
 }
