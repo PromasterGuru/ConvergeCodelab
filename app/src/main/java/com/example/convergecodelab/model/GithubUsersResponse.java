@@ -10,14 +10,14 @@ public class GithubUsersResponse {
     //An ArrayList to hold a list of Github users
     @SerializedName("items")
     @Expose
-    private List<GithubUsers> items;
+    private final List<GithubUsers> items;
+
+    public GithubUsersResponse(List<GithubUsers> items) {
+        this.items = items;
+    }
 
     //Getter method that returns a list of Github users
     public List<GithubUsers> getGithubUsersList() {
         return items;
-    }
-
-    public void setGithubUsersList(List<GithubUsers> items) {
-        this.items = items;
     }
 }
