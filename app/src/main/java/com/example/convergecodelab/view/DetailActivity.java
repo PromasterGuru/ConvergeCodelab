@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import com.example.convergecodelab.R;
 import com.example.convergecodelab.model.GithubUserProfile;
 import com.example.convergecodelab.presenter.GithubProfilePresenter;
+import com.example.convergecodelab.util.NetworkUtility;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -58,23 +60,7 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         txtRepos = (TextView)findViewById(R.id.userRepositories);
         txtGists = (TextView)findViewById(R.id.userGists);
         txtBio = (TextView)findViewById(R.id.userBioInformation);
-
-        Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-        progressDialog = new ProgressDialog(this);
-        String msg = "Loading " + username + " Info...";
-        progressDialog.setTitle(msg);
-        progressDialog.setMessage("Please wait.");
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(true);
-        progressDialog.show();
-
-        profilePresenter= new GithubProfilePresenter(this);
-        profilePresenter.getGithubProfiles(username);
-
-        Picasso.with(this).load(intent.getStringExtra("imageUrl")).into(imgProfile);
-        txtUsername.setText(username);
-
+        fetchDataHelper();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -171,5 +157,32 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         }
         return true;
     }
-
+    public void fetchDataHelper(){
+        NetworkUtility networkUtility = new NetworkUtility();
+        if(networkUtility.networkAvailable(this)) {
+            Intent intent = getIntent();
+            username = intent.getStringExtra("username");
+            progressDialog = new ProgressDialog(this);
+            String msg = "Loading " + username + " Info...";
+            progressDialog.setTitle(msg);
+            progressDialog.setMessage("Please wait.");
+            progressDialog.setCancelable(false);
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+            profilePresenter= new GithubProfilePresenter(this);
+            profilePresenter.getGithubProfiles(username);
+            Picasso.with(this).load(intent.getStringExtra("imageUrl")).into(imgProfile);
+            txtUsername.setText(username);
+        }
+        else {
+            Snackbar.make(findViewById(R.id.user_details), "No internet connection", Snackbar.LENGTH_INDEFINITE).setDuration(60000)
+                    .setAction("Retry", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            profilePresenter.getGithubProfiles(username);
+                        }
+                    })
+                    .show();
+        }
+    }
 }
