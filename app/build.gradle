@@ -5,6 +5,16 @@ apply from: "$project.rootDir/config/pmd/pmd.gradle"
 apply from: "$project.rootDir/config/lint/lint.gradle"
 apply plugin: 'jacoco'
 apply from: "$project.rootDir/config/jacoco/jacoco-test-reporter.gradle"
+
+android.testOptions {
+    animationsDisabled true
+    unitTests.all {
+        jacoco {
+            includeNoLocationClasses = false
+        }
+    }
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -24,23 +34,20 @@ android {
             testCoverageEnabled true
         }
     }
+
     testOptions {
-        animationsDisabled true
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-            }
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        animationsDisabled false
+
+        unitTests {
+            includeAndroidResources = false
+            returnDefaultValues = true
         }
     }
-    productFlavors {
-    }
+
 }
 jacoco {
     toolVersion = "$rootProject.ext.jacocoVersion"
-}
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-//    jacoco.excludes = ['jdk.internal.*']
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -55,15 +62,18 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     implementation "com.squareup.picasso:picasso:$rootProject.ext.retrofitVersion"
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
+
     //Test dependencies
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testRunnerVersion"
     androidTestImplementation "com.android.support.test:rules:$rootProject.ext.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
     testImplementation "androidx.test:core:$rootProject.ext.adroidxTestCoreVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.ext.mockitoCoreVersion"
-    androidTestUtil "com.android.support.test:orchestrator:$rootProject.ext.orchestratorVersion"
+    androidTestUtil "com.android.support.test:orchestrator:$rootProject.ext.testRunnerVersion"
 }
 task wrapper(type: Wrapper) {
     gradleVersion = '4.10.2'

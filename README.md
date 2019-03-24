@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/PromasterGuru/nairobi-java-developers.svg?branch=ft-unit-test-156185242)](https://travis-ci.org/PromasterGuru/nairobi-java-developers)
+[![Build Status](https://travis-ci.org/PromasterGuru/nairobi-java-developers.svg?branch=develop)](https://travis-ci.org/PromasterGuru/nairobi-java-developers)
 [![CircleCI](https://circleci.com/gh/PromasterGuru/nairobi-java-developers.svg?style=svg)](https://circleci.com/gh/PromasterGuru/nairobi-java-developers)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/a141aa73b0bf051ca102/test_coverage)](https://codeclimate.com/github/PromasterGuru/nairobi-java-developers/test_coverage)
+[![codecov](https://codecov.io/gh/PromasterGuru/nairobi-java-developers/branch/bg-fix-test-coverage-report-156185242/graph/badge.svg)](https://codecov.io/gh/PromasterGuru/nairobi-java-developers)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a141aa73b0bf051ca102/maintainability)](https://codeclimate.com/github/PromasterGuru/nairobi-java-developers/maintainability)
 # ConvergeCodelab
 
