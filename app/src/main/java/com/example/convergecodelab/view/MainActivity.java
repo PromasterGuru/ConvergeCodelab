@@ -2,9 +2,10 @@ package com.example.convergecodelab.view;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,12 +16,13 @@ import com.example.convergecodelab.R;
 import com.example.convergecodelab.adapter.GithubAdapter;
 import com.example.convergecodelab.model.GithubUsers;
 import com.example.convergecodelab.presenter.GithubPresenter;
+import com.example.convergecodelab.util.EspressoIdlingResource;
 import com.example.convergecodelab.util.NetworkUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements GithubUsersView {
+public class MainActivity extends AppCompatActivity implements GithubUsersView, SwipeRefreshLayout.OnRefreshListener {
 
     ProgressDialog progressDialog;
     GithubAdapter adapter;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        swipeRefreshLayout = findViewById(R.id.swipeToReflesh);
+        swipeRefreshLayout.setOnRefreshListener(this);
         fetchDataHelper();
     }
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
         }
         initRecyclerView();
         progressDialog.dismiss();
+        EspressoIdlingResource.decrement();
     }
     public void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
@@ -55,31 +60,23 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onRefresh() {
+        loadGithubUsers();
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
     public void loadGithubUsers(){
         final GithubPresenter presenter = new GithubPresenter(this);
         presenter.getGithubUsers();
+        EspressoIdlingResource.increment();
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Loading Github Users...");
         progressDialog.setMessage("Please wait.");
         progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(true);
         progressDialog.show();
-
-        swipeRefreshLayout = findViewById(R.id.swipeToReflesh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        presenter.getGithubUsers();
-                        adapter.notifyDataSetChanged();
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 3000);
-            }
-        });
     }
+
     public void fetchDataHelper(){
         NetworkUtility networkUtility = new NetworkUtility();
         if(networkUtility.networkAvailable(this)) {
@@ -95,5 +92,18 @@ public class MainActivity extends AppCompatActivity implements GithubUsersView {
                     })
                     .show();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(progressDialog != null && progressDialog.isShowing()){
+            progressDialog.dismiss();
+        }
+        super.onDestroy();
+    }
+
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
     }
 }

@@ -7,7 +7,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.Snackbar;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.view.MenuCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 import com.example.convergecodelab.R;
 import com.example.convergecodelab.model.GithubUserProfile;
 import com.example.convergecodelab.presenter.GithubProfilePresenter;
+import com.example.convergecodelab.util.EspressoIdlingResource;
 import com.example.convergecodelab.util.NetworkUtility;
 import com.squareup.picasso.Picasso;
 
@@ -50,7 +53,6 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
         imgProfile = (CircleImageView) findViewById(R.id.userProfile);
         txtUsername = (TextView)findViewById(R.id.userName);
         txtCreate_date = (TextView)findViewById(R.id.userCreate_date);
@@ -75,6 +77,7 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         this.gists = githubUser.getGists();
         getProfiles();
         progressDialog.dismiss();
+        EspressoIdlingResource.decrement();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -158,16 +161,16 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
         return true;
     }
     public void fetchDataHelper(){
+        EspressoIdlingResource.increment();
         NetworkUtility networkUtility = new NetworkUtility();
         if(networkUtility.networkAvailable(this)) {
             Intent intent = getIntent();
-            username = intent.getStringExtra("username");
             progressDialog = new ProgressDialog(this);
+            username = intent.getStringExtra("username");
             String msg = "Loading " + username + " Info...";
             progressDialog.setTitle(msg);
             progressDialog.setMessage("Please wait.");
             progressDialog.setCancelable(false);
-            progressDialog.setIndeterminate(true);
             progressDialog.show();
             profilePresenter= new GithubProfilePresenter(this);
             profilePresenter.getGithubProfiles(username);
@@ -184,5 +187,18 @@ public class DetailActivity extends AppCompatActivity implements GithubUserProfi
                     })
                     .show();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(progressDialog != null && progressDialog.isShowing()){
+            progressDialog.dismiss();
+        }
+        super.onDestroy();
+    }
+
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
     }
 }

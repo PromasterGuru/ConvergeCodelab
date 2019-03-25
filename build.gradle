@@ -5,7 +5,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
-        classpath 'org.jacoco:org.jacoco.core:0.8.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -25,11 +24,11 @@ ext {
     junitVersion = '4.12'
     testRunnerVersion = '1.0.2'
     espressoVersion = '3.0.2'
+    espressoIdlingResourceVersion = '3.1.0'
     circleImageViewVersion = '3.0.0'
     gsonVersion = '2.8.5'
     retrofitVersion = '2.5.0'
     adroidxTestCoreVersion = '1.0.0'
     mockitoCoreVersion = '1.10.19'
     jacocoVersion = '0.8.1'
-    orchestratorVersion ='1.0.2-alpha1'
 }
